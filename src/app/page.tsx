@@ -3,16 +3,6 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-[#FBFAFA] relative text-center">
-      {/* Top Image */}
-      <Image
-        id="topImage"
-        src="/justice_auguste.png"
-        alt="Top Image"
-        width={350}
-        height={200}
-        className="w-[350px] h-auto sm:w-full"
-      />
-
       {/* Navigation Bar */}
       <nav className="flex justify-around w-full bg-[#333] text-white flex-wrap sm:flex-col sm:items-center">
         <a href="#" className="text-[#FF4C4F] font-bold text-2xl px-16 py-2 hover:text-[#FF4C4F]">
@@ -28,6 +18,17 @@ export default function Home() {
           Contact
         </a>
       </nav>
+      
+      {/* Top Image */}
+      <Image
+        id="topImage"
+        src="/justice_auguste.png"
+        alt="Top Image"
+        width={350}
+        height={200}
+        className="w-[350px] h-auto sm:w-full"
+      />
+
 
       {/* Main Image */}
       <Image
