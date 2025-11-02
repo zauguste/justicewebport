@@ -1,49 +1,64 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
-  return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-[#FBFAFA] relative text-center">
-      {/* Navigation Bar */}
-      <nav className="flex justify-around w-full bg-[#333] text-white flex-wrap sm:flex-col sm:items-center">
-        <a href="#" className="text-[#FF4C4F] font-bold text-2xl px-16 py-2 hover:text-[#FF4C4F]">
-          Home
-        </a>
-        <a href="http://www.justiceauguste.art/portfolio.html" className="navbar-item font-bold text-2xl px-16 py-2 hover:text-[#FF4C4F]">
-          Personal Work
-        </a>
-        <a href="#" className="navbar-item font-bold text-2xl px-16 py-2 hover:text-[#FF4C4F]">
-          About Me
-        </a>
-        <a href="#" className="navbar-item font-bold text-2xl px-16 py-2 hover:text-[#FF4C4F]">
-          Contact
-        </a>
-      </nav>
-      
-      {/* Top Image */}
-      <Image
-        id="topImage"
-        src="/justice_auguste.png"
-        alt="Top Image"
-        width={350}
-        height={200}
-        className="w-[350px] h-auto sm:w-full"
-      />
+import { useEffect, useRef, useState } from "react";
+import BodyText from "../components/BodyText";
+import AnimatedLogo from "../components/AnimatedLogo";
 
 
-      {/* Main Image */}
-      <Image
-        id="mainImage"
-        src="/AUD.gif"
-        alt="Main Image"
-        width={400}
-        height={300}
-        className="w-[400px] h-auto mt-5 sm:w-full"
-      />
 
-      {/* Footer */}
-      <footer className="fixed bottom-0 right-0 p-4 text-[#FF4C4F] opacity-70 hover:opacity-100 transition-opacity">
-        &copy; 2024 Justice Auguste. All rights reserved.
-      </footer>
-    </main>
+const Page: React.FC = () => {
+  const headlineRef = useRef<HTMLHeadingElement | null>(null);
+  const paragraphRef = useRef<HTMLParagraphElement | null>(null);
+
+  useEffect(() => {
+    if (!headlineRef.current || !paragraphRef.current) return;
+    const headingWords = headlineRef.current.querySelectorAll(".hero-word");
+    headingWords.forEach((word, i) => {
+      const el = word as HTMLElement;
+      el.style.opacity = "0";
+      el.style.transform = "translateY(40px)";
+      setTimeout(() => {
+        el.style.transition = "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+      }, i * 80);
+    });
+
+    paragraphRef.current.style.opacity = "0";
+    paragraphRef.current.style.transform = "translateY(20px)";
+    setTimeout(() => {
+      if (paragraphRef.current) {
+        paragraphRef.current.style.transition = "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
+        paragraphRef.current.style.opacity = "1";
+        paragraphRef.current.style.transform = "translateY(0)";
+      }
+    }, 400);
+  }, []);
+
+return (
+  <div className="flex flex-col flex-grow bg-white min-h-0">
+      <section className="flex flex-1 flex-col items-center justify-center">
+        <div className="relative w-full bg-[#0F0F10] overflow-hidden">
+          <AnimatedLogo />
+        </div>
+
+        <div className="relative z-[60]">
+          <h1
+            ref={headlineRef}
+            className="text-black font-bold text-4xl tracking-tight sm:text-5xl mb-8 relative z-[60]"
+          >
+            {["Justice ", "Auguste"].map((w, i) => (
+              <span key={i} className="hero-word inline-block px-2">
+                {w}
+              </span>
+            ))}
+          </h1>
+
+          <BodyText ref={paragraphRef} />
+        </div>
+      </section>
+    </div>
   );
-}
+};
+
+export default Page;
