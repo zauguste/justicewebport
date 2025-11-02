@@ -1,0 +1,132 @@
+.wrapper {
+  position: relative;
+  width: min(90vw, 520px);
+  min-height: 200px;
+  margin: 0 auto;
+  padding: 2.5rem 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.source {
+  width: clamp(140px, 28vw, 190px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+.folderStack {
+  position: relative;
+  width: clamp(150px, 30vw, 210px);
+  height: auto;
+}
+
+.folderClosed,
+.folderOpen {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.folderOpen {
+  position: absolute;
+  inset: 0;
+  animation: folderPulse 3.4s infinite ease-in-out;
+  transform-origin: center bottom;
+}
+
+.paperTrail {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.paper {
+  position: absolute;
+  top: 48%;
+  left: 22%;
+  width: clamp(32px, 8vw, 48px);
+  height: clamp(22px, 5vw, 34px);
+  background: linear-gradient(145deg, #fdfdfd, #e6e9ef);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(12, 13, 18, 0.18);
+  opacity: 0;
+  transform-origin: center;
+  animation: paperFlight 3.4s infinite ease-in-out;
+}
+
+.paper:nth-of-type(2) {
+  top: 40%;
+  left: 18%;
+  animation-delay: 0.6s;
+}
+
+.paper:nth-of-type(3) {
+  top: 56%;
+  left: 20%;
+  animation-delay: 1.2s;
+}
+
+.paper:nth-of-type(4) {
+  top: 36%;
+  left: 24%;
+  animation-delay: 1.8s;
+}
+
+@keyframes paperFlight {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-12deg) scale(0.85);
+  }
+  10% {
+    opacity: 1;
+  }
+  44% {
+    transform: translate3d(45%, -22%, 0) rotate(-4deg) scale(1.02);
+  }
+  70% {
+    opacity: 1;
+    transform: translate3d(115%, -12%, 0) rotate(5deg) scale(0.95);
+  }
+  84% {
+    opacity: 0.9;
+    transform: translate3d(150%, 6%, 0) rotate(2deg) scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(190%, 18%, 0) rotate(8deg) scale(0.85);
+  }
+}
+
+@keyframes folderPulse {
+  0%,
+  55%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  60% {
+    opacity: 0.85;
+    transform: translateY(-6px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  82% {
+    opacity: 0.6;
+    transform: translateY(-6px);
+  }
+  90% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .wrapper {
+    min-height: 180px;
+  }
+}

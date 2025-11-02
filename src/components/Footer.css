@@ -1,0 +1,18 @@
+.footer {
+  width: 100%;
+  background-color: #0f0f10;
+  color: #ffffff;
+  padding: 24px 0;
+}
+
+.footer__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer__copy {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #e5e7eb;
+}

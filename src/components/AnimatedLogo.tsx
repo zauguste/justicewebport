@@ -81,7 +81,7 @@ export default function AnimatedLogo() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[280px] sm:h-[320px] max-h-[36vh] pointer-events-none overflow-hidden"
+      className="relative w-full h-[320px] pointer-events-none overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none will-change-transform">
         <svg

@@ -1,6 +1,7 @@
-import './globals.css';
-import { Inter } from 'next/font/google';
-import Footer from '../components/Footer';
+import "./globals.css";
+import { Inter } from "next/font/google";
+import Footer from "../components/Footer";
+import SiteNav from "../components/SiteNav";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen flex flex-col`}>
+        <SiteNav />
         <main className="flex flex-col flex-grow min-h-0">{children}</main>
         <Footer />
       </body>

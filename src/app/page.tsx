@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import BodyText from "../components/BodyText";
 import AnimatedLogo from "../components/AnimatedLogo";
-
-
 
 const Page: React.FC = () => {
   const headlineRef = useRef<HTMLHeadingElement | null>(null);
@@ -12,6 +10,8 @@ const Page: React.FC = () => {
 
   useEffect(() => {
     if (!headlineRef.current || !paragraphRef.current) return;
+
+    // Animate heading words
     const headingWords = headlineRef.current.querySelectorAll(".hero-word");
     headingWords.forEach((word, i) => {
       const el = word as HTMLElement;
@@ -24,6 +24,7 @@ const Page: React.FC = () => {
       }, i * 80);
     });
 
+    // Animate paragraph
     paragraphRef.current.style.opacity = "0";
     paragraphRef.current.style.transform = "translateY(20px)";
     setTimeout(() => {
@@ -35,17 +36,19 @@ const Page: React.FC = () => {
     }, 400);
   }, []);
 
-return (
-  <div className="flex flex-col flex-grow bg-white min-h-0">
+  return (
+    <div className="flex flex-col flex-grow bg-white min-h-0">
       <section className="flex flex-1 flex-col items-center justify-center">
+        {/* Logo section */}
         <div className="relative w-full bg-[#0F0F10] overflow-hidden">
           <AnimatedLogo />
         </div>
 
-        <div className="relative z-[60]">
+        <div className="relative z-[60] text-center">
           <h1
             ref={headlineRef}
-            className="text-black font-bold text-4xl tracking-tight sm:text-5xl mb-8 relative z-[60]"
+            className="text-black font-bold text-4xl tracking-tight mb-8"
+            style={{ paddingLeft: "2%" }} // ✅ 2% padding added here
           >
             {["Justice ", "Auguste"].map((w, i) => (
               <span key={i} className="hero-word inline-block px-2">
