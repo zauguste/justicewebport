@@ -1,52 +1,57 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { gsap } from "gsap";
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Portfolio", href: "/portfolio" },
 ];
 
-const SiteNav: React.FC = () => {
+export default function SiteNav() {
   const pathname = usePathname();
+  const navRef = useRef<HTMLUListElement | null>(null);
+
+  useEffect(() => {
+    if (!navRef.current) return;
+    const links = navRef.current.querySelectorAll("li");
+
+    // fade + slide in animation
+    gsap.fromTo(
+      navRef.current,
+      { y: -30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+    );
+
+    gsap.fromTo(
+      links,
+      { y: -10, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, delay: 0.3, ease: "power2.out" }
+    );
+  }, []);
 
   return (
-    <header className="fixed top-0 right-0 w-full z-50 bg-white/90 backdrop-blur border-b border-neutral-200">
-      <nav className="max-w-6xl mx-auto flex items-center justify-between px-8 py-4">
-        {/* Left-aligned title */}
-        <Link
-          href="/"
-          className="text-lg font-semibold tracking-tight text-neutral-900"
-        >
-          Justice Auguste
-        </Link>
-
-        {/* Right-aligned navigation links */}
-        <ul className="flex space-x-8 ml-auto">
-          {navLinks.map(({ label, href }) => {
-            const isActive =
-              pathname === href || (href !== "/" && pathname.startsWith(href));
-            return (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className={`text-sm font-medium transition-colors ${
-                    isActive
-                      ? "text-neutral-900 border-b-2 border-neutral-900 pb-1"
-                      : "text-neutral-500 hover:text-neutral-900"
-                  }`}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  {label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+    <header className="nav-container">
+      <ul ref={navRef} className="nav-links">
+        {navLinks.map(({ label, href }) => {
+          const isActive =
+            pathname === href || (href !== "/" && pathname.startsWith(href));
+          return (
+            <li key={href}>
+              <Link
+                href={href}
+                className={isActive ? "active" : ""}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </header>
   );
-};
+}
 
-export default SiteNav;
