@@ -1,13 +1,10 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
 import Footer from "../components/Footer";
 import SiteNav from "../components/SiteNav";
 
-const inter = Inter({ subsets: ['latin'] });
-
 export const metadata = {
-  title: 'Justice Auguste Portfolio',
-  description: '2D Animation Portfolio of Justice Auguste',
+  title: "Justice Auguste Portfolio",
+  description: "2D Animation Portfolio of Justice Auguste",
 };
 
 export default function RootLayout({
@@ -17,7 +14,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen flex flex-col`}>
+      <head>
+        {/* ✅ Load Inter directly from Google Fonts */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-[Inter] min-h-screen flex flex-col">
         <SiteNav />
         <main className="flex flex-col flex-grow min-h-0">{children}</main>
         <Footer />
