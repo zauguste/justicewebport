@@ -8,6 +8,7 @@ import { gsap } from "gsap";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Portfolio", href: "/portfolio" },
+  { label: "Admin", href: "/admin" },
 ];
 
 export default function SiteNav() {

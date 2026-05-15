@@ -23,7 +23,7 @@ export default function RootLayout({
       </head>
       <body className="font-[Inter] min-h-screen flex flex-col">
         <SiteNav />
-        <main className="flex flex-col flex-grow min-h-0">{children}</main>
+        <main className="flex flex-col flex-grow min-h-0 pt-24">{children}</main>
         <Footer />
       </body>
     </html>
