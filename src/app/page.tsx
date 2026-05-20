@@ -43,7 +43,6 @@ const Page: React.FC = () => {
           <AnimatedLogo />
         </div>
 
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <div className="relative z-[60] text-center">
           <h1
             ref={headlineRef}

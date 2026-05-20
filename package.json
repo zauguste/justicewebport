@@ -32,13 +32,14 @@
     "wrangler": "4.12.0"
   },
   "scripts": {
-    "build": "opennextjs-cloudflare build",
+    "build": "next build",
+    "build:worker": "opennextjs-cloudflare build",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts",
-    "check": "opennextjs-cloudflare build && tsc && wrangler deploy --dry-run",
-    "deploy": "opennextjs-cloudflare build && wrangler deploy",
+    "check": "npm run build:worker && tsc && wrangler deploy --dry-run",
+    "deploy": "npm run build:worker && wrangler deploy",
     "dev": "next dev",
     "lint": "next lint",
-    "preview": "opennextjs-cloudflare build && wrangler dev",
+    "preview": "npm run build:worker && wrangler dev",
     "start": "next start"
   }
 }
