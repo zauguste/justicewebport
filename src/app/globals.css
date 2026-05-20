@@ -61,7 +61,7 @@ p {
 
 .nav-links a {
   font-weight: 700;
-  color: black;
+  color: #ef4444;
   text-decoration: none;
   transition: color 0.3s ease;
 }
