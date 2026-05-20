@@ -5,6 +5,11 @@ import SiteNav from "../components/SiteNav";
 export const metadata = {
   title: "Justice Auguste Portfolio",
   description: "2D Animation Portfolio of Justice Auguste",
+  icons: {
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180" },
+    ],
+  },
 };
 
 export default function RootLayout({

@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import BodyText from "../components/BodyText";
 import AnimatedLogo from "../components/AnimatedLogo";
-
 const Page: React.FC = () => {
   const headlineRef = useRef<HTMLHeadingElement | null>(null);
   const paragraphRef = useRef<HTMLParagraphElement | null>(null);
@@ -44,6 +43,7 @@ const Page: React.FC = () => {
           <AnimatedLogo />
         </div>
 
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <div className="relative z-[60] text-center">
           <h1
             ref={headlineRef}
